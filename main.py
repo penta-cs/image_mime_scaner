@@ -8,9 +8,7 @@ app = FastAPI(title="image MIME scaner", version="0.1.5",
 @app.post("/")
 async def scaner(file: UploadFile = File(..., )):
     contents = await file.read(2048)
-    mime = None
-
+    
     with magic.Magic() as m:
         mime = m.id_buffer(contents, )
-
     return mime
